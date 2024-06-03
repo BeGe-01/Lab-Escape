@@ -32,7 +32,10 @@ public class Hazard : MonoBehaviour
 
     private IEnumerator RespawnDelay(float delay)
     {
+        Movement move = Player.GetComponentInChildren<Movement>();
+
         yield return new WaitForSeconds(delay);
+        move.canMove = true;
         Player.transform.position = startPoint.transform.position;
     }
 }

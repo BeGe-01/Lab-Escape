@@ -59,10 +59,16 @@ public class GrapplingHook : MonoBehaviour
 
     private void StartGrapple()
     {
-        Vector2 direction = Vector2.right * new Vector2(move.side, transform.position.y);
+        int grappleSide = move.side;
+        if (move.wallSlide)
+        {
+            grappleSide *= -1;
+        }
+
+        Vector2 direction = Vector2.right * new Vector2(grappleSide, transform.position.y);
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDistance, grappableMask);
-        target = new Vector2(transform.position.x + (maxDistance * move.side), transform.position.y);
+        target = new Vector2(transform.position.x + (maxDistance * grappleSide), transform.position.y);
         Debug.Log(target);
 
         if (hit.collider != null)
@@ -80,6 +86,7 @@ public class GrapplingHook : MonoBehaviour
 
     IEnumerator Grapple(RaycastHit2D hit)
     {
+        move.canMove = false;
         float t = 0;
         float time = 5;
 
@@ -106,5 +113,6 @@ public class GrapplingHook : MonoBehaviour
             move.isGrappling = false;
             line.enabled = false;
         }
+        move.canMove = true;
     }
 }

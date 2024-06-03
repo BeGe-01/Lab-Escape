@@ -11,10 +11,12 @@ public class Movement : MonoBehaviour
     [Space]
     [Header("Stats")]
     public float speed = 10;
-    public float jumpForce = 50;
+    public float jumpForce = 15;
     public float slideSpeed = 5;
-    public float wallJumpLerp = 10;
-    public float dashSpeed = 20;
+    public float wallJumpLerp = 4.5f;
+    public float coyoteTime = .05f;
+    public float jumpBufferTime = .4f;
+    public float jumpCooldownTime = .2f; // prevents doulbe jump if player pressed jump quickly
 
     [Space]
     [Header("Booleans")]
@@ -22,19 +24,19 @@ public class Movement : MonoBehaviour
     public bool wallGrab;
     public bool wallJumped;
     public bool wallSlide;
-    public bool isDashing;
     public bool isGrappling;
+    public bool isJumping;
 
     [Space]
 
     private bool groundTouch;
-    private bool hasDashed;
+    private float coyoteTimeCounter;
+    private float jumpBufferCounter;
 
     public int side = 1;
 
     [Space]
-    [Header("Polish")]
-    public ParticleSystem dashParticle;
+    [Header("Particles")]
     public ParticleSystem jumpParticle;
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
@@ -58,14 +60,20 @@ public class Movement : MonoBehaviour
         anim.SetHorizontalMovement(x, y, rb.velocity.y);
 
 
-        if (coll.onGround && !isDashing)
+        if (coll.onGround)
         {
             wallJumped = false;
+            coyoteTimeCounter = coyoteTime;
             GetComponent<BetterJumping>().enabled = true;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
         }
 
         if (coll.onWall && !coll.onGround)
         {
+            coyoteTimeCounter = coyoteTime;
             if (x != 0 && !wallGrab)
             {
                 wallSlide = true;
@@ -78,18 +86,43 @@ public class Movement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f && !isJumping)
+        {
             anim.SetTrigger("jump");
 
-            if (coll.onGround)
-                Jump(Vector2.up, false);
+
             if (coll.onWall && !coll.onGround)
+            {
                 WallJump();
+
+            }
+            else
+            {
+                Jump(Vector2.up, false);
+
+            }
+
+            jumpBufferCounter = 0f;
+
+            StartCoroutine(JumpCooldown());
+        }
+
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            coyoteTimeCounter = 0f;
         }
 
         if (isGrappling)
         {
             rb.gravityScale = 0;
-            rb.velocity = new Vector2(0, 0);
+            StopVelocity();
         }
         else
         {
@@ -200,8 +233,6 @@ public class Movement : MonoBehaviour
 
     void GroundTouch()
     {
-        hasDashed = false;
-        isDashing = false;
 
         side = anim.sr.flipX ? -1 : 1;
 
@@ -232,5 +263,11 @@ public class Movement : MonoBehaviour
     public void StopVelocity()
     {
         rb.velocity = new Vector2(0, 0);
+    }
+    private IEnumerator JumpCooldown()
+    {
+        isJumping = true;
+        yield return new WaitForSeconds(jumpCooldownTime);
+        isJumping = false;
     }
 }

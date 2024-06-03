@@ -27,7 +27,6 @@ public class PlayerAnimation : MonoBehaviour
         anim.SetBool("wallGrab", move.wallGrab);
         anim.SetBool("wallSlide", move.wallSlide);
         anim.SetBool("canMove", move.canMove);
-        anim.SetBool("isDashing", move.isDashing);
 
     }
 
@@ -65,6 +64,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         deathParticle.transform.position = sr.transform.position;
         move.StopVelocity();
+        move.canMove = false;
         deathParticle.Play();
     }
 }

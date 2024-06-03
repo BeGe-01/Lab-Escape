@@ -26059,8 +26059,8 @@ GameObject:
   - component: {fileID: 1908158110}
   - component: {fileID: 1908158107}
   - component: {fileID: 1908158113}
-  - component: {fileID: 1908158106}
   - component: {fileID: 1908158111}
+  - component: {fileID: 1908158106}
   - component: {fileID: 1908158112}
   - component: {fileID: 1908158115}
   - component: {fileID: 1908158114}
@@ -26086,16 +26086,17 @@ MonoBehaviour:
   speed: 10
   jumpForce: 15
   slideSpeed: 5
-  wallJumpLerp: 10
-  dashSpeed: 20
+  wallJumpLerp: 4.5
+  coyoteTime: 0.2
+  jumpBufferTime: 0.2
+  jumpCooldownTime: 0.2
   canMove: 1
   wallGrab: 0
   wallJumped: 0
   wallSlide: 0
-  isDashing: 0
   isGrappling: 0
+  isJumping: 0
   side: 1
-  dashParticle: {fileID: 0}
   jumpParticle: {fileID: 1995112979}
   wallJumpParticle: {fileID: 1605522195}
   slideParticle: {fileID: 36616815}
@@ -26115,7 +26116,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c68ef5cb93e6ba34d99130a79f88c8a6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -26157,7 +26158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  lowJumpMultiplier: 4
 --- !u!114 &1908158112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26178,7 +26179,8 @@ MonoBehaviour:
   onRightWall: 0
   onLeftWall: 0
   wallSide: 0
-  collisionRadius: 0.25
+  groundCollisionSize: {x: 1.25, y: 0.15}
+  wallCollisionSize: {x: 0.15, y: 1.7}
   bottomOffset: {x: 0, y: -0.98}
   rightOffset: {x: 0.72, y: 0}
   leftOffset: {x: -0.72, y: 0}
@@ -26214,8 +26216,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.42, y: 1.95}
+  m_Offset: {x: 0, y: -0.032782316}
+  m_Size: {x: 1.42, y: 2.0155644}
   m_Direction: 0
 --- !u!120 &1908158114
 LineRenderer:
