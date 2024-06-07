@@ -7,35 +7,30 @@ public class Hazard : MonoBehaviour
 
 {
     public GameObject startPoint;
-    public GameObject Player;
 
     // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerAnimation anim = Player.GetComponentInChildren<PlayerAnimation>();
-            anim.Death();
-            StartCoroutine(RespawnDelay(0.1f));
+            GameObject player = collision.gameObject;
+            player.GetComponentInChildren<Movement>().canMove = false;
+            player.GetComponentInChildren<Movement>().isGrappling = false;
+            player.GetComponentInChildren<GrapplingHook>().retracting = false;
+            player.GetComponentInChildren<GrapplingHook>().isGrappling = false;
+            player.GetComponentInChildren<GrapplingHook>().line.enabled = false;
+            player.GetComponentInChildren<PlayerAnimation>().Death();
+            player.GetComponentInChildren<Inventory>().ReturnItems();
+            SaveManager.instance.Death();
+            StartCoroutine(RespawnDelay(player, 0.1f));
         }
     }
 
-    private IEnumerator RespawnDelay(float delay)
+    private IEnumerator RespawnDelay(GameObject player, float delay)
     {
-        Movement move = Player.GetComponentInChildren<Movement>();
-
         yield return new WaitForSeconds(delay);
-        move.canMove = true;
-        Player.transform.position = startPoint.transform.position;
+        player.GetComponentInChildren<Movement>().canMove = true;
+        player.transform.position = startPoint.transform.position;
     }
+
 }

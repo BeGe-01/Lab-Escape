@@ -6,12 +6,12 @@ public class RoomConnector : MonoBehaviour
 {
     [SerializeField] private Transform previousRoom;
     [SerializeField] private Transform nextRoom;
-    [SerializeField] private CameraController cam;
+    Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        cam = Camera.main;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,11 +20,11 @@ public class RoomConnector : MonoBehaviour
         {
             if (collision.transform.position.x < transform.position.x)
             {
-                cam.MoveToNewRoom(nextRoom);
+                cam.GetComponent<CameraController>().MoveToNewRoom(nextRoom);
             }
             else
             {
-                cam.MoveToNewRoom(previousRoom);
+                cam.GetComponent<CameraController>().MoveToNewRoom(previousRoom);
             }
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,34 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float speed = 0.5f;
-    private float currentPosX = -1f;
+    [SerializeField] private Transform startingRoomCamera;
+    private float currentPosX;
     private Vector3 velocity = Vector3.zero;
+    [Space]
+
+    [Header("Camera Fade")]
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private float fadeDuration = 2f;
+    private bool fadeFinished = false;
+
+
+    void Awake()
+    {
+        CameraFadeOut();
+    }
+    void Start()
+    {
+        if (startingRoomCamera != null)
+        {
+            currentPosX = startingRoomCamera.position.x;
+            transform.position = new Vector3(startingRoomCamera.position.x, startingRoomCamera.position.y, transform.position.z);
+
+        }
+        else
+        {
+            currentPosX = 0f;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -18,5 +45,39 @@ public class CameraController : MonoBehaviour
     public void MoveToNewRoom(Transform _newRoom)
     {
         currentPosX = _newRoom.transform.position.x;
+    }
+
+    public void CameraFadeOut()
+    {
+        fadeFinished = false;
+        StartCoroutine(FadeCanvas(canvasGroup, canvasGroup.alpha, 0, fadeDuration));
+    }
+
+    public void CameraFadeIn()
+    {
+        fadeFinished = false;
+        StartCoroutine(FadeCanvas(canvasGroup, canvasGroup.alpha, 1, fadeDuration));
+    }
+
+    private IEnumerator FadeCanvas(CanvasGroup cg, float start, float end, float duration)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(start, end, elapsedTime / duration);
+            yield return null;
+        }
+        cg.alpha = end;
+        fadeFinished = true;
+    }
+
+    public IEnumerator WaitFade(Action callback)
+    {
+        while (!fadeFinished)
+        {
+            yield return null;
+        }
+        callback();
     }
 }
