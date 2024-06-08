@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a089f0cf6037ac40acab62ab48f2d6f, type: 3}
+  m_Sprite: {fileID: 1133943151, guid: e3ab656c1692af04b8fb168553404ee4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1133,6 +1133,7 @@ GameObject:
   - component: {fileID: 261132028}
   - component: {fileID: 261132030}
   - component: {fileID: 261132029}
+  - component: {fileID: 261132031}
   m_Layer: 5
   m_Name: Level Display 2
   m_TagString: Untagged
@@ -1201,6 +1202,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261132027}
   m_CullTransparentMesh: 1
+--- !u!114 &261132031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261132027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edba3a0ff0a564d49bb02008e6b7e7fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelId: Level 3
+  batteryIcon: {fileID: 1122712104}
+  deathIcon: {fileID: 29462161}
+  totalDeathsText: {fileID: 1482865302}
+  totalBatteriesText: {fileID: 786686032}
 --- !u!1 &321380682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,6 +1341,7 @@ GameObject:
   - component: {fileID: 448421109}
   - component: {fileID: 448421111}
   - component: {fileID: 448421110}
+  - component: {fileID: 448421112}
   m_Layer: 5
   m_Name: Level Display 1
   m_TagString: Untagged
@@ -1391,6 +1410,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448421108}
   m_CullTransparentMesh: 1
+--- !u!114 &448421112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448421108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edba3a0ff0a564d49bb02008e6b7e7fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelId: Level 1
+  batteryIcon: {fileID: 590718979}
+  deathIcon: {fileID: 676924581}
+  totalDeathsText: {fileID: 1044446937}
+  totalBatteriesText: {fileID: 871910026}
 --- !u!1 &547415012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,7 +2005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a089f0cf6037ac40acab62ab48f2d6f, type: 3}
+  m_Sprite: {fileID: 1133943151, guid: e3ab656c1692af04b8fb168553404ee4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2042,6 +2078,14 @@ PrefabInstance:
     - target: {fileID: 6253742473362888742, guid: 86abe1e74b92cf04fb1c8b76c34af16d, type: 3}
       propertyPath: level_id
       value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253742473362888742, guid: 86abe1e74b92cf04fb1c8b76c34af16d, type: 3}
+      propertyPath: saveData.batteries.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253742473362888742, guid: 86abe1e74b92cf04fb1c8b76c34af16d, type: 3}
+      propertyPath: saveData.batteries.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2308,7 +2352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc34853894a0d9b4fad12e6b6540bd5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: []
+  buttons:
+  - {fileID: 2026700999}
+  - {fileID: 676712607}
+  - {fileID: 1724646272}
   levelButtons: {fileID: 98549430}
 --- !u!1 &828584522
 GameObject:
@@ -3491,7 +3538,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: abf378748bb6f6f4fadf461d6597a489, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b7fc7ca518b0054bacb229b66fe160b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4872,7 +4919,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a089f0cf6037ac40acab62ab48f2d6f, type: 3}
+  m_Sprite: {fileID: 1133943151, guid: e3ab656c1692af04b8fb168553404ee4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5124,7 +5171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ec58684ce4eae43489adb17e12af3dcf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be8326b93f7ebea40b9f124d53ae3d74, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5153,6 +5200,7 @@ GameObject:
   - component: {fileID: 2114436573}
   - component: {fileID: 2114436575}
   - component: {fileID: 2114436574}
+  - component: {fileID: 2114436576}
   m_Layer: 5
   m_Name: Level Display 3
   m_TagString: Untagged
@@ -5221,6 +5269,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114436572}
   m_CullTransparentMesh: 1
+--- !u!114 &2114436576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114436572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edba3a0ff0a564d49bb02008e6b7e7fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelId: Level 2
+  batteryIcon: {fileID: 1568558693}
+  deathIcon: {fileID: 2009085664}
+  totalDeathsText: {fileID: 1607439014}
+  totalBatteriesText: {fileID: 1214104533}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
