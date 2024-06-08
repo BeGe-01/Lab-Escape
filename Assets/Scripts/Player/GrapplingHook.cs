@@ -59,6 +59,7 @@ public class GrapplingHook : MonoBehaviour
 
     private void StartGrapple()
     {
+        SoundManager.instance.PlaySound(GetComponentInChildren<PlayerAudio>().hookSound);
         int grappleSide = move.side;
         if (move.wallSlide)
         {
@@ -99,6 +100,7 @@ public class GrapplingHook : MonoBehaviour
         line.SetPosition(1, target);
         if (hit.collider != null)
         {
+            SoundManager.instance.PlaySound(GetComponentInChildren<PlayerAudio>().thumpSound);
             retracting = true;
         }
         else

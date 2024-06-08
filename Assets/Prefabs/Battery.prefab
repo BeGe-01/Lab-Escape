@@ -4989,8 +4989,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411bb8cf3a8b1504d9de672040e3c18a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item_id: 
   type: 2
-  followDistance: 1.5
+  followDistance: 1
   speed: 0.5
   isFollowing: 0
   itemIndex: 0

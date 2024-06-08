@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour
                 {
                     item.RemoveItem();
                     currentItems.Remove(currentItems.Find(i => i == item));
+                    SoundManager.instance.PlaySound(GetComponentInChildren<PlayerAudio>().collectSound);
                     Debug.Log("Collect");
                 }
             };

@@ -108,6 +108,7 @@ public class Movement : MonoBehaviour
             }
 
             jumpBufferCounter = 0f;
+            SoundManager.instance.PlaySound(GetComponentInChildren<PlayerAudio>().jumpSound);
 
             StartCoroutine(JumpCooldown());
         }
@@ -230,7 +231,6 @@ public class Movement : MonoBehaviour
     {
 
         side = anim.sr.flipX ? -1 : 1;
-
         jumpParticle.Play();
     }
 

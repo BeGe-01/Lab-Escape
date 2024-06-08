@@ -7,6 +7,9 @@ public class Door : MonoBehaviour
     Camera cam;
     [SerializeField] CollectibleTypes requiredKey = CollectibleTypes.Green_Key;
     [SerializeField] SpriteRenderer keySprite;
+    public AudioClip openSound;
+    public AudioClip lockedSound;
+    public AudioClip enterSound;
     [Space]
     public GameObject roomCamera;
     [SerializeField] GameObject targetDoor;
@@ -73,18 +76,19 @@ public class Door : MonoBehaviour
         {
             if (player.GetComponent<Inventory>().UseItem(requiredKey))
             {
-
                 Unlock();
             }
             else
             {
-                Debug.Log("No Key");
+                StartCoroutine(OpenCooldown());
+                SoundManager.instance.PlaySound(lockedSound);
             }
         }
     }
 
     void Unlock()
     {
+        SoundManager.instance.PlaySound(openSound);
         StartCoroutine(OpenCooldown());
         StartCoroutine(KeyFadeOut());
         anim.SetTrigger("open");
@@ -93,6 +97,7 @@ public class Door : MonoBehaviour
 
     void FinishStage()
     {
+        SoundManager.instance.PlaySound(enterSound);
         cam.GetComponent<CameraController>().CameraFadeIn();
         StartCoroutine(cam.GetComponent<CameraController>().WaitFade(() => Debug.Log("Finish!")));
     }
@@ -100,7 +105,7 @@ public class Door : MonoBehaviour
     IEnumerator MovePlayer(GameObject player)
     {
         isOpening = true;
-
+        SoundManager.instance.PlaySound(enterSound);
         player.GetComponentInChildren<Movement>().canMove = false;
         yield return StartCoroutine(player.GetComponentInChildren<PlayerAnimation>().FadeOut());
         cam.GetComponent<CameraController>().MoveToNewRoom(targetDoor.GetComponent<Door>().roomCamera.transform);

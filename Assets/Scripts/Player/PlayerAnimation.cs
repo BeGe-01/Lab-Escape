@@ -61,6 +61,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void Death()
     {
+        SoundManager.instance.PlaySound(GetComponentInParent<PlayerAudio>().deathSound);
         deathParticle.transform.position = sr.transform.position;
         move.StopVelocity();
         deathParticle.Play();

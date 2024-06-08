@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4858113710159965173}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 33.53956, y: -6.0382314, z: 0.35239077}
   m_LocalScale: {x: 0.1746575, y: 0.1746575, z: 0.1746575}
   m_ConstrainProportionsScale: 0
@@ -168,10 +168,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredKey: 0
   keySprite: {fileID: 4014368827801650888}
+  openSound: {fileID: 8300000, guid: c1af6487193e91342a986b5f3a250baa, type: 3}
+  lockedSound: {fileID: 8300000, guid: 62cb089860990da4583916dcd6f51d68, type: 3}
+  enterSound: {fileID: 8300000, guid: 9e309b8308eaf4048a6ba95dd15e5285, type: 3}
   roomCamera: {fileID: 0}
   targetDoor: {fileID: 0}
   isUnlocked: 0
   isOpening: 0
+  isFinalDoor: 0
 --- !u!1 &8351152480390531407
 GameObject:
   m_ObjectHideFlags: 0
