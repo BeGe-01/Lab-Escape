@@ -10055,7 +10055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 136
   onGround: 0
   onWall: 0
   onRightWall: 0

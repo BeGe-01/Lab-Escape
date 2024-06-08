@@ -106,7 +106,7 @@ public class Door : MonoBehaviour
 
     void NextLevel()
     {
-        if (SaveManager.instance.level_id == "Level 3")
+        if (SaveManager.instance.level_id == "Level 2")
         {
             SceneManager.LoadScene(0);
         }

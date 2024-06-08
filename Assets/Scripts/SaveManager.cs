@@ -73,7 +73,7 @@ public class SaveManager : MonoBehaviour
                 saveData.level1_completed = true;
                 break;
             case "Level 2":
-                saveData.level2_completed = true;
+                // saveData.level2_completed = true;
                 break;
             case "Level 3":
                 saveData.level3_completed = true;

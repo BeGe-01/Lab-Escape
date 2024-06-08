@@ -175,7 +175,7 @@ MonoBehaviour:
   targetDoor: {fileID: 0}
   isUnlocked: 0
   isOpening: 0
-  isFinalDoor: 1
+  isFinalDoor: 0
 --- !u!1 &6647849707381654891
 GameObject:
   m_ObjectHideFlags: 0

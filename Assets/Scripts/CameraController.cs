@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float speed = 0.5f;
     [SerializeField] private Transform startingRoomCamera;
     private float currentPosX;
+    private float currentPosY;
+
     private Vector3 velocity = Vector3.zero;
     [Space]
 
@@ -26,25 +28,27 @@ public class CameraController : MonoBehaviour
         if (startingRoomCamera != null)
         {
             currentPosX = startingRoomCamera.position.x;
+            currentPosY = startingRoomCamera.position.y;
             transform.position = new Vector3(startingRoomCamera.position.x, startingRoomCamera.position.y, transform.position.z);
-
         }
         else
         {
             currentPosX = 0f;
+            currentPosY = 0f;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(currentPosX, transform.position.y, transform.position.z),
+        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(currentPosX, currentPosY, transform.position.z),
             ref velocity, speed);
     }
 
     public void MoveToNewRoom(Transform _newRoom)
     {
         currentPosX = _newRoom.transform.position.x;
+        currentPosY = _newRoom.transform.position.y;
     }
 
     public void CameraFadeOut()

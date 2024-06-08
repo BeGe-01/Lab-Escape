@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
 
 public class LevelDisplay : MonoBehaviour
 {
@@ -23,32 +23,25 @@ public class LevelDisplay : MonoBehaviour
         }
 
         SaveData data = SaveManager.instance.saveData;
-        bool isLevelUnlocked = IsLevelUnlocked(data);
 
-        if (isLevelUnlocked)
+        switch (levelId)
         {
-            switch (levelId)
-            {
-                case "Level 1":
-                    totalDeathsText.text = data.level1_deaths.ToString();
-                    break;
-                case "Level 2":
-                    totalDeathsText.text = data.level2_deaths.ToString();
-                    break;
-                case "Level 3":
-                    totalDeathsText.text = data.level3_deaths.ToString();
-                    break;
-            }
-            totalBatteriesText.text = data.batteries.Count.ToString();
+            case "Level 1":
+                totalDeathsText.text = data.level1_deaths.ToString();
+                break;
+            case "Level 2":
+                totalDeathsText.text = data.level2_deaths.ToString();
+                break;
+            case "Level 3":
+                totalDeathsText.text = data.level3_deaths.ToString();
+                break;
         }
-        else
-        {
-            totalDeathsText.text = "0";
-            totalBatteriesText.text = "0";
-        }
+        totalBatteriesText.text = data.batteries.Count.ToString();
 
-        batteryIcon.SetActive(isLevelUnlocked && data.batteries.Count > 0);
-        deathIcon.SetActive(true); 
+
+        batteryIcon.SetActive(true);
+
+        deathIcon.SetActive(true);
     }
 
     private bool IsLevelUnlocked(SaveData data)
@@ -56,7 +49,7 @@ public class LevelDisplay : MonoBehaviour
         switch (levelId)
         {
             case "Level 1":
-                return true; 
+                return true;
             case "Level 2":
                 return data.level1_completed;
             case "Level 3":

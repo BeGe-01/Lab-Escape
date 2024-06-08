@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edba3a0ff0a564d49bb02008e6b7e7fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: Level 3
+  levelId: Level 2
   batteryIcon: {fileID: 1122712104}
   deathIcon: {fileID: 29462161}
   totalDeathsText: {fileID: 1482865302}
@@ -5281,7 +5281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edba3a0ff0a564d49bb02008e6b7e7fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelId: Level 2
+  levelId: Level 3
   batteryIcon: {fileID: 1568558693}
   deathIcon: {fileID: 2009085664}
   totalDeathsText: {fileID: 1607439014}

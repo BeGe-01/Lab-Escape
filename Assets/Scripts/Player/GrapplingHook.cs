@@ -98,7 +98,7 @@ public class GrapplingHook : MonoBehaviour
             yield return null;
         }
         line.SetPosition(1, target);
-        if (hit.collider != null)
+        if (hit.collider != null && !hit.collider.CompareTag("Ungrappable"))
         {
             SoundManager.instance.PlaySound(GetComponentInChildren<PlayerAudio>().thumpSound);
             retracting = true;
