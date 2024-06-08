@@ -60,4 +60,8 @@ public class LevelMenu : MonoBehaviour
             // buttons[2].interactable = true;
         }
     }
+
+    public void Quit(){
+        Application.Quit();
+    }
 }
