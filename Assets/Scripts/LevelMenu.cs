@@ -46,17 +46,18 @@ public class LevelMenu : MonoBehaviour
         }
 
         // Unlock levels based on saveData
+        buttons[0].interactable = true;
         if (saveManager.saveData.level1_completed || buttons.Length > 0)
-        {
-            buttons[0].interactable = true;
-        }
-        if (saveManager.saveData.level2_completed && buttons.Length > 1)
         {
             buttons[1].interactable = true;
         }
-        if (saveManager.saveData.level3_completed && buttons.Length > 2)
+        if (saveManager.saveData.level2_completed && buttons.Length > 1)
         {
             buttons[2].interactable = true;
+        }
+        if (saveManager.saveData.level3_completed && buttons.Length > 2)
+        {
+            // buttons[2].interactable = true;
         }
     }
 }
