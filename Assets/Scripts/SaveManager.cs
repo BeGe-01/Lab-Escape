@@ -16,7 +16,7 @@ public class SaveManager : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            Destroy(gameObject);
+            Destroy(instance);
         }
         instance = this;
         Load();
@@ -37,10 +37,8 @@ public class SaveManager : MonoBehaviour
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + Path.DirectorySeparatorChar + "save.dat");
-        SaveData data = new SaveData();
 
-        data = saveData;
-        bf.Serialize(file, data);
+        bf.Serialize(file, saveData);
         file.Close();
     }
 
@@ -67,9 +65,9 @@ public class SaveManager : MonoBehaviour
         Save();
     }
 
-    public void Finish(string levelId)
+    public void Finish()
     {
-        switch (levelId)
+        switch (level_id)
         {
             case "Level 1":
                 saveData.level1_completed = true;
@@ -84,6 +82,18 @@ public class SaveManager : MonoBehaviour
         Save();
     }
 
+    public void SetMusicVolume(float value)
+    {
+        saveData.music = value;
+        Save();
+    }
+
+    public void SetSoundVolume(float value)
+    {
+        saveData.sound = value;
+        Save();
+    }
+
 }
 [Serializable]
 public class SaveData
@@ -95,7 +105,8 @@ public class SaveData
     public int level2_deaths;
     public bool level3_completed;
     public int level3_deaths;
-
+    public float sound = 1f;
+    public float music = 1f;
 }
 
 

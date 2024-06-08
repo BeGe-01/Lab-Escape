@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject settingsScreen;
     void Awake()
     {
         pauseScreen.SetActive(false);
+        settingsScreen.SetActive(false);
     }
 
     private void Update()
@@ -32,6 +34,20 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void Settings()
+    {
+        if (settingsScreen.activeInHierarchy)
+        {
+            settingsScreen.SetActive(false);
+            pauseScreen.SetActive(true);
+        }
+        else
+        {
+            settingsScreen.SetActive(true);
+            pauseScreen.SetActive(false);
+        }
+    }
+
     public void Quit()
     {
         Application.Quit();
@@ -47,7 +63,10 @@ public class UIController : MonoBehaviour
         if (status)
             Time.timeScale = 0;
         else
+        {
             Time.timeScale = 1;
+            settingsScreen.SetActive(false);
+        }
     }
 
 }

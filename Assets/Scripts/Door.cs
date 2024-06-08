@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -99,7 +100,20 @@ public class Door : MonoBehaviour
     {
         SoundManager.instance.PlaySound(enterSound);
         cam.GetComponent<CameraController>().CameraFadeIn();
-        StartCoroutine(cam.GetComponent<CameraController>().WaitFade(() => Debug.Log("Finish!")));
+        SaveManager.instance.Finish();
+        StartCoroutine(cam.GetComponent<CameraController>().WaitFade(() => NextLevel()));
+    }
+
+    void NextLevel()
+    {
+        if (SaveManager.instance.level_id == "Level 3")
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     IEnumerator MovePlayer(GameObject player)
